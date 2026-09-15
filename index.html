@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Phân Tích Hiệu Suất Tiếp Thị Đa Kênh | Ao Minh Tâm</title>
+    <meta name="description" content="Nghiên cứu trên 5.000 bài đăng: Tương tác nền tảng, phễu chuyển đổi Organic vs Sponsored, ROI địa lý và Machine Learning Random Forest.">
+    <meta name="author" content="Ao Minh Tâm">
+
+    <!-- Favicon AT Cyber Amber (Data URI SVG) -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Nghiên Cứu Hiệu Suất Marketing Trên Mạng Xã Hội - Ao Minh Tâm">
+    <meta property="og:description" content="Tối ưu tương tác, bóc tách phễu chuyển đổi và phân bổ ngân sách tiếp thị dựa trên 5.000 bài đăng thực nghiệm.">
+    <meta property="og:type" content="article">
+
+    <!-- Structured Data: Multi-Schema 3 mục (@graph) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TechArticle",
+          "headline": "Phân Tích Hiệu Suất Marketing Trên Mạng Xã Hội",
+          "description": "Báo cáo thực nghiệm phân tích 5.000 bài đăng trên 6 nền tảng và 8 khu vực, ứng dụng Random Forest để tối ưu chuyển đổi và ngân sách tiếp thị.",
+          "image": "https://portfolio-data-analytics-rust.vercel.app/og-image.png",
+          "inLanguage": "vi",
+          "datePublished": "2026-09-15",
+          "dateModified": "2026-09-15",
+          "author": {
+            "@type": "Person",
+            "name": "Ao Minh Tâm",
+            "jobTitle": "Data Analyst & Analytics Engineer"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Ao Minh Tâm Analytics Hub",
+            "url": "https://portfolio-data-analytics-rust.vercel.app/"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Khung giờ vàng nào đăng bài đạt lượng tương tác cao nhất tuần?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Khung giờ đạt tương tác cao nhất tuần là 18h00 Thứ Sáu (>160.000 lượt tương tác). Ngoài ra các khung giờ 08h00 sáng Thứ 3, Thứ 4, Thứ 7 cũng ghi nhận lượng tương tác vượt trội."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Yếu tố nào chi phối nhiều nhất đến sự thành công của một bài đăng?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Mô hình Random Forest chỉ ra rằng Chủ đề thẻ Hashtag (35.1%) và Danh mục nội dung (32.4%) là hai biến số quyết định tới 67.5% khả năng thành công của bài viết."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Thị trường quốc tế nào mang lại tỷ suất ROI chuyển đổi Clicks cao nhất?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nhật Bản (14.7% Clicks), Vương Quốc Anh (13.6% Clicks) và Úc (13.1% Clicks) là ba thị trường vượt trội nhất về tỷ trọng lượt click so với số lượng bài đăng đầu tư."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Trang Chủ Portfolio",
+              "item": "https://portfolio-data-analytics-rust.vercel.app/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Báo Cáo Tiếp Thị",
+              "item": "https://portfolio-data-analytics-rust.vercel.app/marketing-performance"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Biến màu Dark Theme (Mặc định) */
+        :root {
+            --amber: #f59e0b;
+            --amber-dark: #d97706;
+            --amber-glow: rgba(245, 158, 11, 0.15);
+            --bg-page: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-sub: #161e2e;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+            --bar-bg: #283548;
+            --header-grad: linear-gradient(180deg, rgba(245,158,11,0.08) 0%, rgba(30,41,59,0.5) 100%);
+        }
+
+        /* Biến màu Light Theme */
+        [data-theme="light"] {
+            --amber: #d97706;
+            --amber-dark: #b45309;
+            --amber-glow: rgba(217, 119, 6, 0.12);
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-sub: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --bar-bg: #e2e8f0;
+            --header-grad: linear-gradient(180deg, rgba(217,119,6,0.08) 0%, rgba(241,245,249,0.6) 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 32px 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container { max-width: 1240px; margin: 0 auto; }
+
+        header, .card, .kpi-card, .funnel-box, .action-card, th, td, .faq-item {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Header */
+        header {
+            background: var(--header-grad);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--amber), transparent);
+        }
+        .header-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--amber-glow);
+            color: var(--amber);
+            border: 1px solid rgba(245,158,11,0.3);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(26px, 4vw, 38px);
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            max-width: 850px;
+            margin-bottom: 24px;
+        }
+        .meta-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 18px;
+        }
+        .meta-bar span strong { color: var(--text-primary); }
+
+        /* KPI Metric Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .kpi-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .kpi-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--amber);
+        }
+
+        /* Layout Grid */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .col-12 { grid-column: span 12; }
+        .col-6  { grid-column: span 6; }
+        @media (max-width: 900px) { .col-6 { grid-column: span 12; } }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 14px;
+        }
+        .card-num {
+            background: var(--amber-glow);
+            color: var(--amber);
+            border: 1px solid rgba(245,158,11,0.3);
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Lists */
+        .metric-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .metric-list li {
+            padding-left: 18px;
+            position: relative;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .metric-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--amber);
+            font-weight: bold;
+        }
+        .metric-list strong { color: var(--text-primary); }
+
+        /* Tables */
+        .table-wrap { overflow-x: auto; margin-top: 14px; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; }
+        th {
+            background-color: var(--bg-card-sub);
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .badge-pill {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-outperform { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+        .badge-underperform { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+        .badge-neutral { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
+
+        /* Funnel Component */
+        .funnel-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+        @media (max-width: 650px) { .funnel-compare { grid-template-columns: 1fr; } }
+        .funnel-box {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+        .funnel-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .funnel-step { margin-bottom: 12px; }
+        .funnel-step-meta { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+        .progress-bar-bg { background: var(--bar-bg); height: 7px; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: var(--amber); border-radius: 4px; }
+        .progress-bar-fill.blue { background: #0284c7; }
+
+        /* Feature Importance */
+        .feature-bar { margin-bottom: 14px; }
+        .feature-meta { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+
+        /* Action Cards */
+        .action-card {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--amber);
+            border-radius: 10px;
+            padding: 18px;
+        }
+        .action-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+        .action-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+        .action-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+        .faq-question {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--amber);
+            margin-bottom: 6px;
+        }
+        .faq-answer {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Floating Theme Switcher Button */
+        .theme-toggle-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--bg-card);
+            color: var(--amber);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .theme-toggle-btn:hover { transform: scale(1.1); border-color: var(--amber); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-tag">Data Analytics Project &bull; 2026</div>
+            <h1>Phân Tích Hiệu Suất Tiếp Thị Trên Mạng Xã Hội</h1>
+            <p class="subtitle">Khai phá động lực tăng trưởng tương tác, tối ưu hóa chuyển đổi và phân bổ ngân sách tiếp thị dựa trên 5.000 bài đăng thực nghiệm.</p>
+            
+            <div class="meta-bar">
+                <span>Thực hiện: <strong>Ao Minh Tâm</strong></span>
+                <span>Khung thời gian: <strong>01/01/2024 &ndash; 01/05/2025</strong></span>
+                <span>Phương pháp: <strong>Random Forest &bull; Funnel Analysis &bull; Multi-touch ROI</strong></span>
+            </div>
+        </header>
+
+        <!-- KPI Metrics Overview -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Tổng bài đăng (Posts)</div>
+                <div class="kpi-value">5,000</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Tổng lượt xem (Views)</div>
+                <div class="kpi-value">4.81B</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Tổng lượt thích (Likes)</div>
+                <div class="kpi-value">844M</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Tổng lượt chia sẻ</div>
+                <div class="kpi-value">267M</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Nền tảng khảo sát</div>
+                <div class="kpi-value">6</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Khu vực phân phối</div>
+                <div class="kpi-value">8</div>
+            </div>
+        </div>
+
+        <main class="layout-grid">
+
+            <!-- Section 1: Engagement Rate -->
+            <section class="card col-6">
+                <div class="card-header">
+                    <div class="card-num">1</div>
+                    <h2>Phân Hóa Tương Tác Theo Nền Tảng & Chủ Đề</h2>
+                </div>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">
+                    Video tiếp tục là động lực kéo traffic chính, tuy nhiên tỷ lệ tương tác (ER) phân tầng rõ rệt theo chủ đề và kênh:
+                </p>
+                <ul class="metric-list">
+                    <li><strong>Top 1 - Social Proof & Stories (~20% ER):</strong> Dẫn đầu áp đảo trên toàn bộ 6 nền tảng (TikTok, Instagram, X.com, LinkedIn, YouTube, Facebook). Case study và đánh giá thực tế giữ chân người xem tốt nhất.</li>
+                    <li><strong>Events & Webinars (~14% ER):</strong> Đứng thứ hai về mức độ gắn kết, phù hợp cho tệp người dùng tìm kiếm kiến thức chuyên môn.</li>
+                    <li><strong>Product & Launch (~11.5% ER):</strong> Chỉ đạt mức trung bình, thể hiện người dùng có xu hướng lướt qua quảng cáo tính năng sản phẩm đơn thuần.</li>
+                    <li><strong>Ngoại lệ trên LinkedIn:</strong> Nhóm <em>Entertainment & Culture</em> chỉ đạt &lt;8% trên các kênh khác nhưng vọt lên xấp xỉ 13% trên LinkedIn khi khai thác văn hóa công sở.</li>
+                </ul>
+            </section>
+
+            <!-- Section 2: Best Time to Post -->
+            <section class="card col-6">
+                <div class="card-header">
+                    <div class="card-num">2</div>
+                    <h2>Lịch Đăng Bài & Bản Đồ Nhiệt Khung Giờ Vàng</h2>
+                </div>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">
+                    Phân tích lượng tương tác trung bình theo ngày và giờ xác định các khung giờ phân phối tối ưu:
+                </p>
+                <ul class="metric-list">
+                    <li><strong>Top 1 Toàn diện (18h00 Thứ Sáu):</strong> Đạt tương tác cao nhất tuần (&gt;160.000 lượt), thời điểm người dùng bắt đầu kỳ nghỉ cuối tuần.</li>
+                    <li><strong>Sóng sáng sớm (08h00 sáng):</strong> Thứ 3, Thứ 4 và Thứ 7 duy trì lượng tương tác vượt trội lúc 8h (thói quen check feed trước giờ làm/học).</li>
+                    <li><strong>Sóng nghỉ trưa (13h00 - 14h00):</strong> Thứ 2 (13h), Thứ 6 và Chủ nhật (14h) là các mốc giải lao có mật độ phản hồi ổn định.</li>
+                    <li><strong>Khuyến nghị vận hành:</strong> Cài đặt lịch tự động xuất bản vào 17h30 Thứ Sáu và 07h30 sáng Thứ 3, Thứ 4, Thứ 7 để đón trọn sóng tương tác.</li>
+                </ul>
+            </section>
+
+            <!-- Section 3: Funnel Analysis -->
+            <section class="card col-12">
+                <div class="card-header">
+                    <div class="card-num">3</div>
+                    <h2>Phễu Chuyển Đổi: Tự Nhiên (Organic) vs. Trả Phí (Sponsored)</h2>
+                </div>
+                <p style="font-size: 14px; color: var(--text-secondary);">
+                    So sánh hành vi người dùng qua từng tầng phễu tiếp thị:
+                </p>
+
+                <div class="funnel-compare">
+                    <!-- Organic Funnel -->
+                    <div class="funnel-box">
+                        <div class="funnel-title">
+                            <span>Nội dung Tự nhiên (Organic)</span>
+                            <span style="color: var(--amber);">4.65G Impr</span>
+                        </div>
+                        <div class="funnel-step">
+                            <div class="funnel-step-meta"><span>1. Hiển thị (Impressions)</span><span>4.65G (100%)</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="funnel-step">
+                            <div class="funnel-step-meta"><span>2. Lượt xem (Views)</span><span>3.88G (83.4%)</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 83.4%;"></div></div>
+                        </div>
+                        <div class="funnel-step">
+                            <div class="funnel-step-meta"><span>3. Tương tác (Engagement)</span><span>524M (11.3%)</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 11.3%;"></div></div>
+                        </div>
+                        <div class="funnel-step">
+                            <div class="funnel-step-meta"><span>4. Lượt Click (Clicks)</span><span>25.9M (0.6%)</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 0.6%;"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Sponsored Funnel -->
+                    <div class="funnel-box">
+                        <div class="funnel-title">
+                            <span>Nội dung Trả phí (Sponsored)</span>
+                            <span style="color: #0284c7;">1.12G Impr</span>
+                        </div>
+                        <div class="funnel-step">
+                            <div class="funnel-step-meta"><span>1. Hiển thị (Impressions)</span><span>1.12G (100%)</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill blue" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="funnel-step">
+                            <div class="funnel-step-meta"><span>2. Lượt xem (Views)</span><span>929M (83.2%)</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill blue" style="width: 83.2%;"></div></div>
+                        </div>
+                        <div class="funnel-step">
+                            <div class="funnel-step-meta"><span>3. Tương tác (Engagement)</span><span>123M (11.0%)</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill blue" style="width: 11.0%;"></div></div>
+                        </div>
+                        <div class="funnel-step">
+                            <div class="funnel-step-meta"><span>4. Lượt Click (Clicks)</span><span>9.48M (0.8%)</span></div>
+                            <div class="progress-bar-bg"><div class="progress-bar-fill blue" style="width: 0.8%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 18px; font-size: 14px; color: var(--text-secondary);">
+                    <strong>Nhận định:</strong> Bài đăng Organic tạo tỷ lệ tương tác cao hơn ở tầng giữa phễu (11.3% so với 11.0%) nhờ sự tin cậy. Ngược lại, bài Sponsored vượt trội ở lượt Click cuối (0.8% so với 0.6%) nhờ nút kêu gọi hành động (CTA) trực diện.
+                </div>
+            </section>
+
+            <!-- Section 4: Geographic Performance -->
+            <section class="card col-12">
+                <div class="card-header">
+                    <div class="card-num">4</div>
+                    <h2>Hiệu Quả Chuyển Đổi Địa Lý & Phân Bổ Ngân Sách</h2>
+                </div>
+                <p style="font-size: 14px; color: var(--text-secondary);">
+                    Đối soát giữa tỷ trọng bài đăng và tỷ trọng lượt Click thu được trên 8 thị trường:
+                </p>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Khu Vực (Region)</th>
+                                <th>% Tỷ Trọng Bài Đăng</th>
+                                <th>% Tỷ Trọng Clicks Thu Được</th>
+                                <th>Chênh Lệch</th>
+                                <th>Đánh Giá Phân Bổ (ROI)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Japan</strong></td>
+                                <td>11.8%</td>
+                                <td>14.7%</td>
+                                <td style="color: #10b981; font-weight: 600;">+2.9%</td>
+                                <td><span class="badge-pill badge-outperform">Vượt trội (High ROI)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>United Kingdom</strong></td>
+                                <td>12.9%</td>
+                                <td>13.6%</td>
+                                <td style="color: #10b981; font-weight: 600;">+0.7%</td>
+                                <td><span class="badge-pill badge-outperform">Vượt trội (High ROI)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Australia</strong></td>
+                                <td>12.0%</td>
+                                <td>13.1%</td>
+                                <td style="color: #10b981; font-weight: 600;">+1.1%</td>
+                                <td><span class="badge-pill badge-outperform">Vượt trội (High ROI)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Germany</strong></td>
+                                <td>11.3%</td>
+                                <td>11.2%</td>
+                                <td style="color: #94a3b8;">-0.1%</td>
+                                <td><span class="badge-pill badge-neutral">Cân bằng</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>United States</strong></td>
+                                <td>13.5%</td>
+                                <td>12.8%</td>
+                                <td style="color: #ef4444; font-weight: 600;">-0.7%</td>
+                                <td><span class="badge-pill badge-underperform">Kém hiệu quả (Bão hòa)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Brazil</strong></td>
+                                <td>12.8%</td>
+                                <td>11.9%</td>
+                                <td style="color: #ef4444; font-weight: 600;">-0.9%</td>
+                                <td><span class="badge-pill badge-underperform">Kém hiệu quả</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>India</strong></td>
+                                <td>12.3%</td>
+                                <td>11.4%</td>
+                                <td style="color: #ef4444; font-weight: 600;">-0.9%</td>
+                                <td><span class="badge-pill badge-underperform">Kém hiệu quả</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Canada</strong></td>
+                                <td>13.2%</td>
+                                <td>11.4%</td>
+                                <td style="color: #ef4444; font-weight: 600;">-1.8%</td>
+                                <td><span class="badge-pill badge-underperform">Kém hiệu quả</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 5: Random Forest -->
+            <section class="card col-6">
+                <div class="card-header">
+                    <div class="card-num">5</div>
+                    <h2>Đặc Trưng Quyết Định Thành Công (Random Forest)</h2>
+                </div>
+                <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">
+                    Mô hình học máy xác định mức độ ảnh hưởng của các biến số tới tương tác bài viết:
+                </p>
+
+                <div class="feature-bar">
+                    <div class="feature-meta"><span>1. Hashtag_Theme (Chủ đề thẻ)</span><strong>35.1%</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 35.1%;"></div></div>
+                </div>
+                <div class="feature-bar">
+                    <div class="feature-meta"><span>2. Content_Category (Danh mục nội dung)</span><strong>32.4%</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 32.4%;"></div></div>
+                </div>
+                <div class="feature-bar">
+                    <div class="feature-meta"><span>3. Post_Hour (Khung giờ đăng)</span><strong>7.5%</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 7.5%; opacity: 0.85;"></div></div>
+                </div>
+                <div class="feature-bar">
+                    <div class="feature-meta"><span>4. Region (Khu vực địa lý)</span><strong>6.3%</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 6.3%; opacity: 0.75;"></div></div>
+                </div>
+                <div class="feature-bar">
+                    <div class="feature-meta"><span>5. Content_Format (Định dạng bài viết)</span><strong>6.2%</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 6.2%; opacity: 0.75;"></div></div>
+                </div>
+                <div class="feature-bar">
+                    <div class="feature-meta"><span>6. Day_of_Week (Ngày trong tuần)</span><strong>5.6%</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 5.6%; opacity: 0.65;"></div></div>
+                </div>
+                <div class="feature-bar">
+                    <div class="feature-meta"><span>7. Platform (Nền tảng mạng xã hội)</span><strong>5.5%</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 5.5%; opacity: 0.65;"></div></div>
+                </div>
+                <div class="feature-bar">
+                    <div class="feature-meta"><span>8. Distribution_Type (Organic vs Paid)</span><strong>1.3%</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 1.3%; opacity: 0.5;"></div></div>
+                </div>
+
+                <div style="background: var(--bg-card-sub); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-top: 16px; font-size: 13px; color: var(--text-secondary);">
+                    💡 <strong>Insight:</strong> Định vị nội dung (Hashtag & Category) chiếm tới <strong style="color: var(--amber);">67.5%</strong> tỷ trọng quyết định. Loại hình phân phối chỉ chiếm 1.3%, cho thấy thuật toán đánh giá dựa trên sự đón nhận thực tế thay vì ưu ái quảng cáo trả phí.
+                </div>
+            </section>
+
+            <!-- Section 6: Action Plan -->
+            <section class="card col-6">
+                <div class="card-header">
+                    <div class="card-num">6</div>
+                    <h2>Đề Xuất Chiến Lược & Kế Hoạch Hành Động</h2>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    
+                    <div class="action-card">
+                        <div class="action-tag">Content &amp; Creative Team</div>
+                        <div class="action-title">Tập Trung "Social Proof"</div>
+                        <p class="action-desc">
+                            Dồn 70% ngân sách sáng tạo vào nhóm câu chuyện khách hàng và review thực tế (~20% ER). Chuẩn hóa định dạng Video ngắn và bổ sung nội dung văn hóa công sở riêng cho kênh LinkedIn.
+                        </p>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-tag">Performance Media &amp; Finance</div>
+                        <div class="action-title">Tối Ưu Ngân Sách Theo ROI Vùng</div>
+                        <p class="action-desc">
+                            Gia tăng ngân sách và tần suất phân phối sang các thị trường Nhật Bản, Anh và Úc (nhóm đóng góp tới 41.4% Clicks). Cắt giảm 10-15% bài đăng tại Mỹ và Canada để tránh bão hòa nội dung.
+                        </p>
+                    </div>
+
+                    <div class="action-card">
+                        <div class="action-tag">Marketing Operations</div>
+                        <div class="action-title">Tự Động Hóa Lịch Xuất Bản & Phễu</div>
+                        <p class="action-desc">
+                            Cài đặt lịch phân phối tự động đón khung giờ vàng: 17h30 Thứ Sáu và 07h30 sáng Thứ 3, Thứ 4, Thứ 7. Dùng nội dung Organic để nuôi dưỡng tương tác và Sponsored có CTA rõ ràng để chốt Clicks.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Section 7: FAQs (Structured Data Support) -->
+            <section class="card col-12">
+                <div class="card-header">
+                    <div class="card-num">7</div>
+                    <h2>Câu Hỏi Thường Gặp (FAQs - Tối Ưu Hóa SEO)</h2>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: Khung giờ vàng nào đăng bài đạt lượng tương tác cao nhất tuần?</div>
+                    <div class="faq-answer">Khung giờ đạt tương tác cao nhất tuần là 18h00 Thứ Sáu (>160.000 lượt tương tác). Ngoài ra các khung giờ 08h00 sáng Thứ 3, Thứ 4, Thứ 7 cũng ghi nhận lượng tương tác vượt trội.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: Yếu tố nào chi phối nhiều nhất đến sự thành công của một bài đăng?</div>
+                    <div class="faq-answer">Mô hình Random Forest chỉ ra rằng Chủ đề thẻ Hashtag (35.1%) và Danh mục nội dung (32.4%) là hai biến số quyết định tới 67.5% khả năng thành công của bài viết.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q: Thị trường quốc tế nào mang lại tỷ suất ROI chuyển đổi Clicks cao nhất?</div>
+                    <div class="faq-answer">Nhật Bản (14.7% Clicks), Vương Quốc Anh (13.6% Clicks) và Úc (13.1% Clicks) là ba thị trường vượt trội nhất về tỷ trọng lượt click so với số lượng bài đăng đầu tư.</div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Floating Theme Switcher Button -->
+    <button id="themeToggle" class="theme-toggle-btn" title="Chuyển chế độ sáng/tối" aria-label="Toggle Theme">
+        🌙
+    </button>
+
+    <!-- Theme Switcher JavaScript -->
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const rootElement = document.documentElement;
+
+        // 1. Kiểm tra tùy chọn đã lưu trong localStorage
+        const savedTheme = localStorage.getItem('site-theme');
+        if (savedTheme === 'light') {
+            rootElement.setAttribute('data-theme', 'light');
+            themeToggleBtn.textContent = '☀️';
+        }
+
+        // 2. Lắng nghe sự kiện click chuyển đổi Theme
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'light') {
+                rootElement.removeAttribute('data-theme');
+                themeToggleBtn.textContent = '🌙';
+                localStorage.setItem('site-theme', 'dark');
+            } else {
+                rootElement.setAttribute('data-theme', 'light');
+                themeToggleBtn.textContent = '☀️';
+                localStorage.setItem('site-theme', 'light');
+            }
+        });
+    </script>
+
+</body>
+</html>
