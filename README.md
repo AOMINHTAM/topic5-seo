@@ -13,7 +13,8 @@
 ### 2. Giới Thiệu Dự Án
 Website được xây dựng dưới dạng **Analytics Report Hub**, trực quan hóa kết quả nghiên cứu: *"Phân tích Hiệu suất Marketing trên Mạng xã hội"* dựa trên tập dữ liệu thực nghiệm 5.000 bài đăng qua 6 nền tảng và 8 khu vực quốc tế.
 
-* **Live Demo (GitHub Pages):** `https://[username].github.io/[ten-repo]/`
+* **Live Demo (GitHub Pages):** https://aominhtam.github.io/topic5-seo/
+* **Source Code (Repository):** https://github.com/AOMINHTAM/topic5-seo
 * **Công nghệ sử dụng:** HTML5 Semantic, CSS3 Custom Properties (Dark/Light Theme), Vanilla JS, SVG Data URI Favicon.
 
 ---
