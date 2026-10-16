@@ -43,3 +43,22 @@ Dự án ứng dụng kỹ thuật lồng ghép `@graph` để khai báo đồng
 2. **Kết quả đạt được:** 
    * Trạng thái: **Đã phát hiện 3 mục hợp lệ** (Không có lỗi hoặc cảnh báo nghiêm trọng).
    * Đủ điều kiện xuất hiện trên trang kết quả tìm kiếm nhiều định dạng của Google.
+
+---
+
+### 5. Hệ Thống Liên Kết & Cấu Trúc Nội Dung Chuẩn SEO (Bài Thực Hành 2 & 3)
+
+Dự án đã hoàn thiện nghiên cứu từ khóa, phân bổ cấu trúc Silo và tối ưu hóa On-Page/Off-Page cho **Ao Minh Tâm (MSSV: `1350080240` - Lớp: `13_ĐH_CNTT5`)**:
+
+* 👉 **Pillar Page (Báo cáo chính):** **[Phân tích hiệu suất tiếp thị trên mạng xã hội - Topic5 SEO Analytics Hub](https://aominhtam.github.io/topic5-seo/)**
+* 🔗 **Liên kết trực tiếp (Naked URL):** https://aominhtam.github.io/topic5-seo/
+* 📊 **Các chuyên trang con trong cấu trúc Silo (Internal & External Anchor Links):**
+  1. [Social Media Analytics là gì? Quy trình phân tích từ A-Z](https://aominhtam.github.io/topic5-seo/tong-quan-social-media-analytics.html)
+  2. [Chỉ số đo lường hiệu quả Social Media: Phân tích 4.81B Views](https://aominhtam.github.io/topic5-seo/chi-so-kpi-social-media.html)
+  3. [Cách tăng tương tác mạng xã hội 2026 trên 6 nền tảng](https://aominhtam.github.io/topic5-seo/toi-uu-tuong-tac-da-nen-tang.html)
+  4. [Phân tích phễu chuyển đổi marketing (Funnel Analysis)](https://aominhtam.github.io/topic5-seo/phan-tich-pheu-chuyen-doi-funnel.html)
+  5. [Tối ưu tỷ lệ chuyển đổi mạng xã hội (CRO)](https://aominhtam.github.io/topic5-seo/toi-uu-ty-le-chuyen-doi-cro.html)
+  6. [Mô hình phân bổ đa điểm chạm (Multi-touch ROI)](https://aominhtam.github.io/topic5-seo/mo-hinh-multi-touch-attribution-roi.html)
+  7. [Cách tính ROI trong Social Media Marketing & Phân bổ ngân sách](https://aominhtam.github.io/topic5-seo/cach-tinh-va-phan-bo-ngan-sach-roi.html)
+  8. [Ứng dụng Random Forest dự đoán tương tác mạng xã hội](https://aominhtam.github.io/topic5-seo/ung-dung-random-forest-social-media.html)
+  9. [Tải bộ dữ liệu 5.000 bài đăng thực nghiệm & Mẫu báo cáo ngân sách marketing](https://aominhtam.github.io/topic5-seo/tai-dataset-5000-bai-dang-thuc-nghiem.html)

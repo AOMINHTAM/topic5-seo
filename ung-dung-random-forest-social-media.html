@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng Dụng Random Forest Dự Đoán Tương Tác Mạng Xã Hội | AI</title>
+    <meta name="description" content="Nghiên cứu ứng dụng Random Forest dự đoán tương tác mạng xã hội. Khai phá các yếu tố quyết định viral từ bộ dữ liệu 5.000 bài đăng thực nghiệm.">
+    <meta name="author" content="Ao Minh Tâm">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aominhtam.github.io/topic5-seo/ung-dung-random-forest-social-media.html" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://aominhtam.github.io/topic5-seo/ung-dung-random-forest-social-media.html" />
+    <meta property="og:title" content="Ứng Dụng Random Forest Dự Đoán Tương Tác Mạng Xã Hội | AI" />
+    <meta property="og:description" content="Nghiên cứu ứng dụng Random Forest dự đoán tương tác mạng xã hội. Khai phá các yếu tố quyết định viral từ bộ dữ liệu 5.000 bài đăng thực nghiệm." />
+    <meta property="og:image" content="https://aominhtam.github.io/topic5-seo/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --amber: #f59e0b;
+            --amber-glow: rgba(245, 158, 11, 0.15);
+            --bg-page: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-sub: #161e2e;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.65;
+            padding: 32px 16px;
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .breadcrumb a { color: var(--amber); text-decoration: none; font-weight: 600; }
+        article {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 36px;
+        }
+        .tag {
+            display: inline-block;
+            background: var(--amber-glow);
+            color: var(--amber);
+            border: 1px solid rgba(245,158,11,0.3);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(24px, 3.5vw, 34px);
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+        .lead {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        .figure-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        .figure-box img { width: 52px; height: 52px; border-radius: 10px; }
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            margin: 20px 0 12px 0;
+            color: var(--amber);
+        }
+        ul { padding-left: 20px; margin-bottom: 24px; color: var(--text-secondary); }
+        li { margin-bottom: 10px; }
+        .internal-links {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 24px;
+        }
+        .internal-links a {
+            color: var(--amber);
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 14px;
+            display: inline-block;
+            margin-top: 6px;
+        }
+        .internal-links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Trang chủ Topic5 SEO Hub</a> &rsaquo; <span>Mô hình Học máy (Random Forest)</span>
+        </nav>
+        <article>
+            <span class="tag">Mô hình Học máy (Random Forest) &bull; Từ khóa: ứng dụng random forest dự đoán tương tác</span>
+            <h1>Ứng Dụng Thuật Toán Random Forest Dự Báo Tương Tác</h1>
+            <p class="lead">Huấn luyện mô hình học máy Random Forest trên 5.000 bài đăng để định lượng mức độ đóng góp (Feature Importance) của 8 biến số đầu vào.</p>
+
+            <div class="figure-box">
+                <img src="favicon.svg" alt="mo-hinh-ung-dung-random-forest-du-doan-tuong-tac" width="52" height="52">
+                <div>
+                    <strong>Minh họa dữ liệu thực nghiệm (5.000 bài đăng):</strong><br>
+                    <span style="font-size: 13px; color: var(--text-secondary);">Thuộc tính Alt ảnh chuẩn SEO: <code>alt="mo-hinh-ung-dung-random-forest-du-doan-tuong-tac"</code></span>
+                </div>
+            </div>
+
+            <h2>Các Phát Hiện &amp; Chỉ Số Trọng Tâm</h2>
+            <ul>
+                <li>Hashtag_Theme (Chủ đề thẻ): Chiếm 35.1% trọng số quyết định thành công của bài đăng.</li>
+                <li>Content_Category (Danh mục nội dung): Chiếm 32.4% trọng số — kết hợp cùng Hashtag tạo nên 67.5% tổng mức độ ảnh hưởng.</li>
+                <li>Các biến số phụ trợ: Post_Hour (7.5%), Region (6.3%), Content_Format (6.2%), Day_of_Week (5.6%), Platform (5.5%), Distribution_Type (1.3%).</li>
+            </ul>
+
+            <div class="internal-links">
+                <strong>Liên kết nội bộ (Internal Links - Mô hình Silo):</strong><br>
+                <a href="index.html">&larr; Về Trang chủ Báo cáo Tổng hợp (/topic5-seo/)</a>
+                <a href="chi-so-kpi-social-media.html">Chỉ số KPI (4.81B Views)</a>
+                <a href="phan-tich-pheu-chuyen-doi-funnel.html">Phân tích Phễu (Funnel Analysis)</a>
+                <a href="mo-hinh-multi-touch-attribution-roi.html">Mô hình Multi-touch ROI</a>
+                <a href="ung-dung-random-forest-social-media.html">Dự báo Random Forest</a>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
