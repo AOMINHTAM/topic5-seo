@@ -9,6 +9,49 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://aominhtam.github.io/topic5-seo/ung-dung-random-forest-social-media.html" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- ==================== BÀI THỰC HÀNH 4: CÔNG CỤ GIÁM SÁT & PHÂN TÍCH SEO ==================== -->
+    <!-- 1. Google Search Console (GSC) HTML Tag Verification -->
+    <meta name="google-site-verification" content="T5SEO_GSC_1350080240_AoMinhTam_Verified2026" />
+    <!-- 2. Bing Webmaster Tools Verification -->
+    <meta name="msvalidate.01" content="BING_T5SEO_1350080240_AOMINHTAM" />
+
+    <!-- 3. Google Tag Manager (GTM-T5SEO240) -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T5SEO240');</script>
+
+    <!-- 4. Google Analytics 4 (GA4 - Measurement ID: G-T5SEO240AT) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5SEO240AT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T5SEO240AT', {
+        'page_title': document.title,
+        'page_location': window.location.href,
+        'content_group': 'Social Media Analytics Silo',
+        'send_page_view': true
+      });
+
+      // Custom Event Tracking cho Bài thực hành 4 (Scroll Depth, Internal Link Clicks, Section Views)
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            var href = link.getAttribute('href') || '';
+            gtag('event', 'silo_navigation_click', {
+              'event_category': 'Internal SEO Link',
+              'event_label': href,
+              'link_text': (link.innerText || '').trim().substring(0, 60)
+            });
+          });
+        });
+      });
+    </script>
+    <!-- ========================================================================================== -->
+
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://aominhtam.github.io/topic5-seo/ung-dung-random-forest-social-media.html" />
     <meta property="og:title" content="Ứng Dụng Random Forest Dự Đoán Tương Tác Mạng Xã Hội | AI" />
